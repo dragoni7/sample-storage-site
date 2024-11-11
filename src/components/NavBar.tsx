@@ -28,7 +28,7 @@ export default function NavBar() {
 
   return (
     <>
-      <AppBar position="static" style={{ width: '100vw' }}>
+      <AppBar position="fixed" style={{ width: '100vw' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Desktop */}
