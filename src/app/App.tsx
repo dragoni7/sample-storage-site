@@ -1,24 +1,38 @@
-import Footer from '@/components/Footer';
-import NavBar from '@/components/NavBar';
-import { Box, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { useMemo } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { createRouter } from './routes';
+
+const AppRouter = () => {
+  const router = useMemo(() => createRouter(), []);
+
+  return <RouterProvider router={router} />;
+};
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ['Helvetica'].join(','),
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 2000,
+      xl: 3000,
+    },
+  },
+  palette: {
+    mode: 'dark',
+    background: {},
+  },
+});
 
 function App() {
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
-      <CssBaseline />
-      <NavBar />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          mt: { xs: 8, sm: 9 },
-        }}
-      >
-        content
-      </Box>
-      <Footer />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <AppRouter />
+    </ThemeProvider>
   );
 }
 

@@ -7,13 +7,14 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Button,
+  Link,
+  Stack,
 } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, { useState } from 'react';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Find Storage', 'Size Guide', 'Storage Types', 'Contact Us'];
 
 export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -50,6 +51,32 @@ export default function NavBar() {
             >
               LOGO
             </Typography>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ width: '100vw', display: { xs: 'none', md: 'flex' } }}
+            >
+              {pages.map((page) => (
+                <Link
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  href={'/' + page.toLocaleLowerCase().replace(/ +/g, '-')}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Link>
+              ))}
+              <Box sx={{ flexGrow: 1 }} />
+              {'541-283-1980'}
+              <Link
+                key={'Pay Online'}
+                onClick={handleCloseNavMenu}
+                href={'/pay-online'}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Pay Online
+              </Link>
+            </Stack>
 
             {/* Mobile */}
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -105,18 +132,6 @@ export default function NavBar() {
             >
               LOGO
             </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
           </Toolbar>
         </Container>
       </AppBar>
