@@ -11,20 +11,33 @@ const AppRouter = () => {
 
 const theme = createTheme({
   typography: {
-    fontFamily: ['Helvetica'].join(','),
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 2000,
-      xl: 3000,
-    },
+    fontFamily: 'Roboto, Arial, sans-serif',
   },
   palette: {
-    mode: 'dark',
-    background: {},
+    mode: 'light',
+  },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: '#0F274d',
+          fontWeight: 700,
+          fontSize: '1.0625rem',
+          textDecoration: 'none',
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: '#0F274d',
+          fontWeight: 700,
+          fontSize: '1.0625rem',
+          textTransform: 'none',
+        },
+      },
+    },
   },
 });
 

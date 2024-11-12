@@ -8,10 +8,10 @@ import {
   Menu,
   MenuItem,
   Link,
-  Stack,
+  Button,
 } from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Payment, PhoneInTalk } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 const pages = ['Find Storage', 'Size Guide', 'Storage Types', 'Contact Us'];
@@ -29,67 +29,65 @@ export default function NavBar() {
 
   return (
     <>
-      <AppBar position="fixed" style={{ width: '100vw' }}>
+      <AppBar position="fixed" style={{ width: '100vw', backgroundColor: 'white' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Desktop */}
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
+            <Box
               sx={{
-                mr: 2,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
+                gap: 2,
               }}
             >
-              LOGO
-            </Typography>
-            <Stack
-              direction="row"
-              spacing={2}
-              sx={{ width: '100vw', display: { xs: 'none', md: 'flex' } }}
-            >
+              <img src="/logo.png" width={'10%'} height={'10%'} />
               {pages.map((page) => (
                 <Link
                   key={page}
                   onClick={handleCloseNavMenu}
                   href={'/' + page.toLocaleLowerCase().replace(/ +/g, '-')}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   {page}
                 </Link>
               ))}
               <Box sx={{ flexGrow: 1 }} />
-              {'541-283-1980'}
-              <Link
+              <PhoneInTalk sx={{ color: 'black' }} />
+              <Link href={'tel:5412831980'}>{'541-283-1980'}</Link>
+              <Button
+                variant="outlined"
                 key={'Pay Online'}
                 onClick={handleCloseNavMenu}
                 href={'/pay-online'}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                startIcon={<Payment />}
+                sx={{ backgroundColor: 'lightblue', borderRadius: 6 }}
               >
                 Pay Online
-              </Link>
-            </Stack>
+              </Button>
+            </Box>
 
             {/* Mobile */}
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Box
+              sx={{
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                display: { xs: 'flex', md: 'none' },
+                gap: 2,
+              }}
+            >
+              <img src="/logo.png" width={'42%'} height={'42%'} />
+              <Box sx={{ flexGrow: 1 }} />
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="menu options"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="default"
               >
                 <MenuIcon />
               </IconButton>
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -107,31 +105,22 @@ export default function NavBar() {
                 sx={{ display: { xs: 'block', md: 'none' } }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    href={'/' + page.toLocaleLowerCase().replace(/ +/g, '-')}
+                  >
                     <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                   </MenuItem>
                 ))}
+                <MenuItem key={'Pay Online'} onClick={handleCloseNavMenu} href="/pay-online">
+                  <Typography sx={{ textAlign: 'center' }}>Pay Online</Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Link href={'tel:5412831980'}>{'541-283-1980'}</Link>
+                </MenuItem>
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              LOGO
-            </Typography>
           </Toolbar>
         </Container>
       </AppBar>
